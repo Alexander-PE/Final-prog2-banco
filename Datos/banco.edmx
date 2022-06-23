@@ -1,0 +1,387 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="bancoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="cuentas">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cNumero" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="propietario" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="cSaldo" Type="int" />
+        </EntityType>
+        <EntityType Name="prestamo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cuenta" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="monto" Type="int" Nullable="false" />
+          <Property Name="montoPagado" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="prestamoHistorial">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cuenta" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="montoPagado" Type="int" Nullable="false" />
+          <Property Name="fecha" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tcredito">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tnumero" Type="nvarchar" MaxLength="15" />
+          <Property Name="propietario" Type="nvarchar" MaxLength="50" />
+          <Property Name="Saldo" Type="int" />
+        </EntityType>
+        <EntityType Name="transacciones">
+          <Key>
+            <PropertyRef Name="idTransaccion" />
+          </Key>
+          <Property Name="idTransaccion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cOrigen" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="cDestino" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="monto" Type="int" Nullable="false" />
+          <Property Name="tFecha" Type="date" />
+        </EntityType>
+        <EntityType Name="usos">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Cuenta" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="accion" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="monto" Type="int" Nullable="false" />
+          <Property Name="fecha" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="usuarios">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Cedula" Type="nvarchar" MaxLength="15" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Apellidos" Type="nvarchar" MaxLength="50" />
+          <Property Name="Correo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Clave" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="rol" Type="int" Nullable="false" />
+        </EntityType>
+        <Function Name="avance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cue" Type="nvarchar" Mode="In" />
+          <Parameter Name="dinero" Type="int" Mode="In" />
+        </Function>
+        <Function Name="avances" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cue" Type="nvarchar" Mode="In" />
+          <Parameter Name="dinero" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ingresosN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cue" Type="nvarchar" Mode="In" />
+          <Parameter Name="dinero" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ingresosNN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cue" Type="nvarchar" Mode="In" />
+          <Parameter Name="dinero" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ingresosP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cue" Type="nvarchar" Mode="In" />
+          <Parameter Name="dinero" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ingresosPP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cue" Type="nvarchar" Mode="In" />
+          <Parameter Name="dinero" Type="int" Mode="In" />
+        </Function>
+        <Function Name="prestamosss" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cue" Type="nvarchar" Mode="In" />
+          <Parameter Name="idd" Type="int" Mode="In" />
+          <Parameter Name="dinero" Type="int" Mode="In" />
+        </Function>
+        <Function Name="retirosss" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cue" Type="nvarchar" Mode="In" />
+          <Parameter Name="dinero" Type="int" Mode="In" />
+        </Function>
+        <Function Name="retirossse" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cue" Type="nvarchar" Mode="In" />
+          <Parameter Name="dinero" Type="int" Mode="In" />
+        </Function>
+        <Function Name="tranferenciaaaa" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idC" Type="nvarchar" Mode="In" />
+          <Parameter Name="idD" Type="nvarchar" Mode="In" />
+          <Parameter Name="dinero" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="bancoModelStoreContainer">
+          <EntitySet Name="cuentas" EntityType="Self.cuentas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="prestamo" EntityType="Self.prestamo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="prestamoHistorial" EntityType="Self.prestamoHistorial" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tcredito" EntityType="Self.Tcredito" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="transacciones" EntityType="Self.transacciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="usos" EntityType="Self.usos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="usuarios" EntityType="Self.usuarios" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="bancoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="transaccione">
+          <Key>
+            <PropertyRef Name="idTransaccion" />
+          </Key>
+          <Property Name="idTransaccion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cOrigen" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="cDestino" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="monto" Type="Int32" Nullable="false" />
+          <Property Name="tFecha" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="usuario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cedula" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Apellidos" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Correo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Clave" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="rol" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="bancoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="transacciones" EntityType="Self.transaccione" />
+          <EntitySet Name="usuarios" EntityType="Self.usuario" />
+          <FunctionImport Name="consultar" ReturnType="Collection(bancoModel.consultar_Result)">
+          <Parameter Name="acc" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="tranferenciaa">
+            <Parameter Name="idC" Mode="In" Type="String" />
+            <Parameter Name="idD" Mode="In" Type="String" />
+            <Parameter Name="dinero" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="cuentas" EntityType="bancoModel.cuenta" />
+          <EntitySet Name="prestamoes" EntityType="bancoModel.prestamo" />
+          <FunctionImport Name="prestamoo">
+            <Parameter Name="cue" Mode="In" Type="String" />
+            <Parameter Name="idd" Mode="In" Type="Int32" />
+            <Parameter Name="dinero" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="tranferenciaaaa">
+            <Parameter Name="idC" Mode="In" Type="String" />
+            <Parameter Name="idD" Mode="In" Type="String" />
+            <Parameter Name="dinero" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="prestamoHistorials" EntityType="bancoModel.prestamoHistorial" />
+          <FunctionImport Name="prestamosss">
+            <Parameter Name="cue" Mode="In" Type="String" />
+            <Parameter Name="idd" Mode="In" Type="Int32" />
+            <Parameter Name="dinero" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ingresos">
+            <Parameter Name="cue" Mode="In" Type="String" />
+            <Parameter Name="dinero" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="avance">
+            <Parameter Name="cue" Mode="In" Type="String" />
+            <Parameter Name="dinero" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ingresosN">
+            <Parameter Name="cue" Mode="In" Type="String" />
+            <Parameter Name="dinero" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ingresosP">
+            <Parameter Name="cue" Mode="In" Type="String" />
+            <Parameter Name="dinero" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="retirosss">
+            <Parameter Name="cue" Mode="In" Type="String" />
+            <Parameter Name="dinero" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="avances">
+            <Parameter Name="cue" Mode="In" Type="String" />
+            <Parameter Name="dinero" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ingresosNN">
+            <Parameter Name="cue" Mode="In" Type="String" />
+            <Parameter Name="dinero" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ingresosPP">
+            <Parameter Name="cue" Mode="In" Type="String" />
+            <Parameter Name="dinero" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="retirossse">
+            <Parameter Name="cue" Mode="In" Type="String" />
+            <Parameter Name="dinero" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="usos" EntityType="bancoModel.uso" />
+          <EntitySet Name="Tcreditoes" EntityType="bancoModel.Tcredito" />
+        </EntityContainer>
+        <ComplexType Name="consultar_Result">
+          <Property Type="String" Name="cNumero" Nullable="false" MaxLength="1" />
+          <Property Type="Int32" Name="cTipo" Nullable="false" />
+          <Property Type="Int32" Name="cSaldo" Nullable="false" />
+          <Property Type="DateTime" Name="cCreacion" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="cuenta">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cNumero" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="propietario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cSaldo" Type="Int32" />
+        </EntityType>
+        <EntityType Name="prestamo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cuenta" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="monto" Type="Int32" Nullable="false" />
+          <Property Name="montoPagado" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="prestamoHistorial">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cuenta" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="montoPagado" Type="Int32" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="uso">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cuenta" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="accion" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="monto" Type="Int32" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="Tcredito">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tnumero" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="propietario" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Saldo" Type="Int32" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="bancoModelStoreContainer" CdmEntityContainer="bancoEntities">
+          <EntitySetMapping Name="transacciones">
+            <EntityTypeMapping TypeName="bancoModel.transaccione">
+              <MappingFragment StoreEntitySet="transacciones">
+                <ScalarProperty Name="idTransaccion" ColumnName="idTransaccion" />
+                <ScalarProperty Name="cOrigen" ColumnName="cOrigen" />
+                <ScalarProperty Name="cDestino" ColumnName="cDestino" />
+                <ScalarProperty Name="monto" ColumnName="monto" />
+                <ScalarProperty Name="tFecha" ColumnName="tFecha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usuarios">
+            <EntityTypeMapping TypeName="bancoModel.usuario">
+              <MappingFragment StoreEntitySet="usuarios">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Cedula" ColumnName="Cedula" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+                <ScalarProperty Name="rol" ColumnName="rol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="cuentas">
+            <EntityTypeMapping TypeName="bancoModel.cuenta">
+              <MappingFragment StoreEntitySet="cuentas">
+                <ScalarProperty Name="cSaldo" ColumnName="cSaldo" />
+                <ScalarProperty Name="propietario" ColumnName="propietario" />
+                <ScalarProperty Name="cNumero" ColumnName="cNumero" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="prestamoes">
+            <EntityTypeMapping TypeName="bancoModel.prestamo">
+              <MappingFragment StoreEntitySet="prestamo">
+                <ScalarProperty Name="montoPagado" ColumnName="montoPagado" />
+                <ScalarProperty Name="monto" ColumnName="monto" />
+                <ScalarProperty Name="cuenta" ColumnName="cuenta" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="tranferenciaaaa" FunctionName="bancoModel.Store.tranferenciaaaa" />
+          <EntitySetMapping Name="prestamoHistorials">
+            <EntityTypeMapping TypeName="bancoModel.prestamoHistorial">
+              <MappingFragment StoreEntitySet="prestamoHistorial">
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="montoPagado" ColumnName="montoPagado" />
+                <ScalarProperty Name="cuenta" ColumnName="cuenta" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="prestamosss" FunctionName="bancoModel.Store.prestamosss" />
+          <FunctionImportMapping FunctionImportName="avance" FunctionName="bancoModel.Store.avance" />
+          <FunctionImportMapping FunctionImportName="ingresosN" FunctionName="bancoModel.Store.ingresosN" />
+          <FunctionImportMapping FunctionImportName="ingresosP" FunctionName="bancoModel.Store.ingresosP" />
+          <FunctionImportMapping FunctionImportName="retirosss" FunctionName="bancoModel.Store.retirosss" />
+          <FunctionImportMapping FunctionImportName="avances" FunctionName="bancoModel.Store.avances" />
+          <FunctionImportMapping FunctionImportName="ingresosNN" FunctionName="bancoModel.Store.ingresosNN" />
+          <FunctionImportMapping FunctionImportName="ingresosPP" FunctionName="bancoModel.Store.ingresosPP" />
+          <FunctionImportMapping FunctionImportName="retirossse" FunctionName="bancoModel.Store.retirossse" />
+          <EntitySetMapping Name="usos">
+            <EntityTypeMapping TypeName="bancoModel.uso">
+              <MappingFragment StoreEntitySet="usos">
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="monto" ColumnName="monto" />
+                <ScalarProperty Name="accion" ColumnName="accion" />
+                <ScalarProperty Name="Cuenta" ColumnName="Cuenta" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tcreditoes">
+            <EntityTypeMapping TypeName="bancoModel.Tcredito">
+              <MappingFragment StoreEntitySet="Tcredito">
+                <ScalarProperty Name="Saldo" ColumnName="Saldo" />
+                <ScalarProperty Name="propietario" ColumnName="propietario" />
+                <ScalarProperty Name="Tnumero" ColumnName="Tnumero" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

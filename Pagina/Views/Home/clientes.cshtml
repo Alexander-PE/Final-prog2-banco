@@ -1,0 +1,59 @@
+﻿@model Entidades.cuenta
+
+@{
+    ViewBag.Title = "clientes";
+}
+
+
+
+<div class="card">
+    <form action="/" method="post" class="box" enctype="multipart/form-data">
+        <h2>Cuenta de: @Html.DisplayFor(model => model.propietario)</h2><hr />
+        <h3>Numero de cuenta:</h3>
+        <p>@Html.DisplayFor(model => model.cNumero)</p>
+        <h3>Balance de cuenta:</h3>
+        <p>@Html.DisplayFor(model => model.cSaldo)</p>
+        <a href="transferir" class="btn btn-primary">Transferir</a>
+        <a href="consultarPrestamos" class="btn btn-primary">Consultar prestamos</a>
+        <a href="consultarCuenta" class="btn btn-primary">Historial</a>
+        <a href="consultarTarjeta" class="btn btn-primary aaa">Consultar tarjetas</a>
+        <a href="retirar" class="btn btn-primary">Retirar</a>
+    </form>
+</div>
+
+
+
+<style>
+
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        background: linear-gradient(to right, #b92b27, #1565c0);
+        color: white;
+    }
+
+    .card {
+        margin-bottom: 20px;
+        border: none
+    }
+
+    .box {
+        width: 500px;
+        padding: 40px;
+        position: absolute;
+        top: 60px;
+        left: 30%;
+        background: #191919;
+        text-align: center;
+        transition: 0.25s;
+        margin-top: 100px
+    }
+
+    .aaa{
+        margin-top: 10px;
+    }
+</style>
+
+
+

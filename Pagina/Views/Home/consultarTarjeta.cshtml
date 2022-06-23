@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Entidades.Tcredito>
+
+@{
+    ViewBag.Title = "consultarTarjeta";
+
+}
+
+
+    <table class="table">
+        <tr>
+            <th>
+                <h4>Numero de tarjeta</h4>
+            </th>
+            <th>
+                <h4>Propietario</h4>
+            </th>
+            <th>
+                <h4>Saldo</h4>
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tnumero)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.propietario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Saldo)
+        </td>
+        <td>
+            @Html.ActionLink("Avance", "avance", new { id = item.id }) 
+        </td>
+    </tr>
+    }
+
+       
+    
+    </table>

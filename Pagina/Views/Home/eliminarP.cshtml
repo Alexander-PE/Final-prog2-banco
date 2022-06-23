@@ -1,0 +1,44 @@
+﻿@model Entidades.prestamo
+
+@{
+    ViewBag.Title = "eliminarP";
+}
+
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.cuenta)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.cuenta)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.monto)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.monto)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.montoPagado)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.montoPagado)
+            </dd>
+    
+        </dl>
+    
+        @using (Html.BeginForm()) {
+            @Html.AntiForgeryToken()
+    
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-primary" /> 
+            </div>
+        }
+    </div>

@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Entidades.cuenta>
+
+@{
+    ViewBag.Title = "consultarGenteC";
+}
+
+
+<table class="table">
+    <tr>
+        <th>
+            <h4>Cuenta</h4>
+        </th>
+        <th>
+            <h4>Propietario</h4>
+        </th>
+        <th>
+            <h4>Saldo</h4>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.cNumero)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.propietario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cSaldo)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditarrrC", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Ingreso", "FormularioI", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "eliminarC", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

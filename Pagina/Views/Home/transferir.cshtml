@@ -1,0 +1,39 @@
+﻿@model Entidades.transaccione
+
+@{
+    ViewBag.Title = "transferir";
+}
+
+
+
+    @using (Html.BeginForm("transferir", "transaccione", FormMethod.Post)) 
+    {
+        @Html.AntiForgeryToken()
+        
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    
+            <div class="form-group">
+                <h5>Cuenta de destino:</h5>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.cDestino, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.cDestino, "", new { @class = "text-danger" })
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <h5>Monto a transferir:</h5>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.monto, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.monto, "", new { @class = "text-danger" })
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    }
